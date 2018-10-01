@@ -21,9 +21,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/account' do
-    @current_user = User.find_by(session)
-    session = session[:@current_user.id]
-    if Helpers.is_logged_in(session)
+    @current_user = User.find_by(session[:user_id])
+
+    if @current_user
         erb :account
     else
         erb :error
